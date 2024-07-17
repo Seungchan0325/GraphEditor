@@ -807,9 +807,10 @@ class Main(Tk):
             chk[u] = True
             SCC[u] = num
             for v, w in graph_rev[u]:
-                steps.append((self.SET_EDGE, v, u))
-
+                if SCC[u] == SCC[v] and chk[v]:
+                    steps.append((self.SET_EDGE, v, u))
                 if not chk[v]:
+                    steps.append((self.SET_EDGE, v, u))
                     dfs_rev(self, v, num)
 
         for i in range(1, N+1):
