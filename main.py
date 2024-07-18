@@ -5,9 +5,7 @@ from collections import deque
 
 from tkinter import *
 from tkinter import ttk
-import tkinter
 from tkinter.scrolledtext import ScrolledText
-from tkinter.tix import NoteBook
 
 def set_text_bgcolor(widget, line, color):
     widget.tag_add(f'{line}', f'{line}.0', f'{line}.end')
@@ -220,6 +218,7 @@ class Main(Tk):
     
     def update_radio(self):
         self.algorithm.set(0)
+        self.algorithm_changed()
         for i, algorithm in enumerate(self.algorithms):
             name, func, steppable, requires = algorithm
 
@@ -716,7 +715,7 @@ class Main(Tk):
         
         for i in range(1, N+1):
             if sum(adjmat[i]) % 2 == 1:
-                steps.append((self.OUTPUT_TEXT, f"{sum(adjmat[i])}Can't find eulerian circuit"))
+                steps.append((self.OUTPUT_TEXT, "Can't find eulerian circuit"))
                 return steps
             
         start = self.get_start_node()
